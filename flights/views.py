@@ -12,7 +12,7 @@ def index(request):
     })
 
 def flight(request, flight_id):
-    flight = Flight.objects.filter(id=flight_id)
+    flight = Flight.objects.get(pk=flight_id)
     passengers = flight.passengers.all()
     non_passengers = Passenger.objects.exclude(flights=flight).all()
     return render(request, "flights/flight.html", {"flight": flight, "passengers": passengers,"non_passengers": non_passengers})
